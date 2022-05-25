@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolando Dados</title>
+</head>
+
+<body>
+
+    Quantos dados? <br>
+    <input id="ipt_qtde">
+
+    <br>
+
+    <button onclick="rolagem(4)">d4</button>
+    <button onclick="rolagem(6)">d6</button>
+    <button onclick="rolagem(8)">d8</button>
+    <button onclick="rolagem(10)">d10</button>
+    <button onclick="rolagem(12)">d12</button>
+    <button onclick="rolagem(20)">d20</button>
+    <button onclick="rolagem(100)">d100</button>
+
+    <div id="div_resul"></div>
+
+    <br>
+
+    <input id="ipt_commands" on>
+
+</body>
+
+</html>
+
+<script>
+
+    function rolagem(dado) {
+
+        var v_qtde = Number(ipt_qtde.value),
+            v_num = 0;
+
+        div_resul.innerHTML = '';
+
+        for (var i = 0; v_qtde > i; i++) {
+
+            v_num = Math.random() * (dado - 1) + 1;
+
+            div_resul.innerHTML += v_num.toFixed(0) + '<br>';
+        }
+    }
+
+</script>
