@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: monospace;
+}
+
+/* Inicio login-cadastro */
+
+.login{
+    background-color: #EAE0FE;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login .banner{
+    background-color: #291A47;
+    height: 500px;
+    width: 430px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.login h1{
+    border-bottom: #A245DE 2px solid;
+    width: 90%;
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 32px;
+    color: #fff;
+}
+
+.cadastro{
+    background-color: #EAE0FE;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastro .banner{
+    background-color: #291A47;
+    height: 810px;
+    width: 430px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.cadastro h1{
+    border-bottom: #A245DE 2px solid;
+    width: 90%;
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 32px;
+    color: #fff;
+}
+
+.campo{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+.campo label{
+    color: #fff;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 5px;
+    margin-left: 6px;
+}
+
+.campo input{
+    background-color: #563C89;
+    border: none;
+    font-size: 22px;
+    padding: 10px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.campo button{
+    font-size: 22px;
+    width: 215px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.campo span{
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.senha{
+    display: flex;
+}
+
+.senha button{
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
+    margin-left: -40px;
+}
+
+.senha img{
+    height: 35px;
+}
+
+.btn1{
+    background-color: #4260D4;
+}
+
+.btn2{
+    background-color: #C242D4;
+}
+
+/* Fim login-cadastro */

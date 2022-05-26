@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cadastro</title>
+</head>
+
+<body>
+
+    <div class="cadastro">
+        <div class="banner">
+
+            <h1>Seja bem vindo <br> aventureiro</h1>
+
+            <div class="campo">
+                <label>Nome:</label>
+                <input id="ipt_nome" placeholder="nome">
+            </div>
+            <div class="campo">
+                <label>Apelido:</label>
+                <input id="ipt_apelido" placeholder="Mestre dos Magos">
+            </div>
+            <div class="campo">
+                <label>Email:</label>
+                <input id="ipt_email" placeholder="mestre@gmail.com">
+            </div>
+            <div class="campo">
+                <label>Senha:</label>
+                <div class="senha">
+                    <input id="ipt_cadastrarsenha" type="password" placeholder="••••••••">
+                    <button onclick="mostrarSenha(2)"><img id="olho2" src="assets/olho_d.png"></button>
+                </div>
+            </div>
+            <div class="campo">
+                <label>Confirmar Senha:</label>
+                <div class="senha">
+                    <input id="ipt_confirmarsenha" type="password" placeholder="••••••••">
+                    <button onclick="mostrarSenha(3)"><img id="olho3" src="assets/olho_d.png"></button>
+                </div>
+            </div>
+            <div class="campo">
+                <button class="btn1">Criar Conta</button>
+                <span>ou</span>
+                <a href="login.html"><button class="btn2">Ja possui conta?</button></a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    function mostrarSenha(campo) {
+
+        if (campo == 2) {
+
+            if (ipt_cadastrarsenha.type == 'text') {
+
+                ipt_cadastrarsenha.type = 'password';
+                olho2.src = 'assets/olho_d.png';
+            } else {
+
+                ipt_cadastrarsenha.type = 'text';
+                olho2.src = 'assets/olho_a.png';
+            }
+        }
+
+        if (campo == 3) {
+
+            if (ipt_confirmarsenha.type == 'text') {
+
+                ipt_confirmarsenha.type = 'password';
+                olho3.src = 'assets/olho_d.png';
+            } else {
+
+                ipt_confirmarsenha.type = 'text';
+                olho3.src = 'assets/olho_a.png';
+            }
+        }
+    }
+
+</script>
