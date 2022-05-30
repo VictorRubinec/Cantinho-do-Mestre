@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Login</title>
     <script src="./js/funcoes.js"></script>
+    <script src="./js/login.js"></script>
 </head>
 
 <body>
@@ -26,13 +27,13 @@
                 <label>Senha:</label>
                 <div class="senha">
                     <input id="ipt_senha" type="password" placeholder="••••••••">
-                    <button onclick="mostrarSenha(1)"><img id="olho1" src="assets/olho_d.png"></button>
+                    <a onclick="mostrarSenha(1)"><img id="olho1" src="assets/olho_d.png"></a>
                 </div>
             </div>
             <div class="campo">
                 <button class="btn1" onclick="entrar()">Entrar</button>
                 <span>ou</span>
-                <a href="cadastro.html"><button class="btn2">Crie sua conta</button></a>
+                <a href="cadastro.html" class="btn2">Crie sua conta</a>
             </div>
 
         </div>
@@ -42,73 +43,3 @@
 </body>
 
 </html>
-
-<script>
-
-    function entrar() {
-
-        var emailVar = ipt_email.value;
-        var senhaVar = ipt_senha.value;
-
-        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
-        if (emailVar == "" || senhaVar == "") {
-            
-            alert("Preencha todos os campos");
-            return false;
-        }
-
-        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-            
-            alert("Email inválido");
-            return false;
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-
-</script>

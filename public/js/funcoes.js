@@ -69,4 +69,30 @@ function mostrarSenha(campo) {
             olho1.src = 'assets/olho_a.png';
         }
     }
+
+    if (campo == 2) {
+
+        if (ipt_cadastrarsenha.type == 'text') {
+
+            ipt_cadastrarsenha.type = 'password';
+            olho2.src = 'assets/olho_d.png';
+        } else {
+
+            ipt_cadastrarsenha.type = 'text';
+            olho2.src = 'assets/olho_a.png';
+        }
+    }
+
+    if (campo == 3) {
+
+        if (ipt_confirmarsenha.type == 'text') {
+
+            ipt_confirmarsenha.type = 'password';
+            olho3.src = 'assets/olho_d.png';
+        } else {
+
+            ipt_confirmarsenha.type = 'text';
+            olho3.src = 'assets/olho_a.png';
+        }
+    }
 }

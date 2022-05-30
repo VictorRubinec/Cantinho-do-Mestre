@@ -8,112 +8,53 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Cadastro</title>
     <script src="js/funcoes.js"></script>
+    <script src="js/login.js"></script>
 </head>
 
 <body>
 
     <div class="cadastro">
         <div class="banner">
+            <div class="conteudo" id="linha">
+                <h1>Seja bem vindo <br> aventureiro</h1>
 
-            <h1>Seja bem vindo <br> aventureiro</h1>
-
-            <div class="campo">
-                <label>Nome:</label>
-                <input id="ipt_nome" placeholder="nome">
-            </div>
-            <div class="campo">
-                <label>Apelido:</label>
-                <input id="ipt_apelido" placeholder="Mestre dos Magos">
-            </div>
-            <div class="campo">
-                <label>Email:</label>
-                <input id="ipt_email" placeholder="mestre@gmail.com">
-            </div>
-            <div class="campo">
-                <label>Senha:</label>
-                <div class="senha">
-                    <input id="ipt_cadastrarsenha" type="password" placeholder="••••••••">
-                    <button onclick="mostrarSenha(2)"><img id="olho2" src="assets/olho_d.png"></button>
+                <div class="campo">
+                    <label>Nome:</label>
+                    <input id="ipt_nome" placeholder="nome">
+                </div>
+                <div class="campo">
+                    <label>Apelido:</label>
+                    <input id="ipt_apelido" placeholder="Mestre dos Magos">
+                </div>
+                <div class="campo">
+                    <label>Email:</label>
+                    <input id="ipt_email" placeholder="mestre@gmail.com">
                 </div>
             </div>
-            <div class="campo">
-                <label>Confirmar Senha:</label>
-                <div class="senha">
-                    <input id="ipt_confirmarsenha" type="password" placeholder="••••••••">
-                    <button onclick="mostrarSenha(3)"><img id="olho3" src="assets/olho_d.png"></button>
+            <div class="conteudo">
+                <div class="campo">
+                    <label>Senha:</label>
+                    <div class="senha">
+                        <input id="ipt_cadastrarsenha" type="password" placeholder="••••••••">
+                        <a onclick="mostrarSenha(2)"><img id="olho2" src="assets/olho_d.png"></a>
+                    </div>
+                </div>
+                <div class="campo">
+                    <label>Confirmar Senha:</label>
+                    <div class="senha">
+                        <input id="ipt_confirmarsenha" type="password" placeholder="••••••••">
+                        <a onclick="mostrarSenha(3)"><img id="olho3" src="assets/olho_d.png"></a>
+                    </div>
+                </div>
+                <div class="campo">
+                    <button class="btn1" onclick="cadastrar()">Criar Conta</button>
+                    <span>ou</span>
+                    <a href="login.html" class="btn2">Ja possui conta?</a>
                 </div>
             </div>
-            <div class="campo">
-                <button class="btn1" onclick="cadastrar()">Criar Conta</button>
-                <span>ou</span>
-                <a href="login.html"><button class="btn2">Ja possui conta?</button></a>
-            </div>
-
         </div>
     </div>
 
 </body>
 
 </html>
-
-<script>
-
-    function cadastrar() {
-
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-        var nomeVar = ipt_nome.value;
-        var apelidoVar = ipt_apelido.value;
-        var emailVar = ipt_email.value;
-        var senhaVar = ipt_cadastrarsenha.value;
-        var confirmacaoSenhaVar = ipt_confirmarsenha.value;
-
-        if (nomeVar == "" || apelidoVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            
-            alert("Preencha todos os campos!");
-            return false;
-        }
-
-        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-
-            alert("Email inválido!");
-            return false;
-        }
-
-        if (senhaVar != confirmacaoSenhaVar) {
-
-            alert("Senhas não conferem!");
-            return false;
-        }
-
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                apelidoServer: apelidoVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                console.log("Cadastrado com sucesso!");
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-
-        return false;
-    }
-
-</script>

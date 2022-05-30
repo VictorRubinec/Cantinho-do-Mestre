@@ -49,13 +49,26 @@ body{
 
 .cadastro .banner{
     background-color: #291A47;
-    height: 810px;
-    width: 430px;
+    height: 400px;
+    width: 730px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.cadastro .conteudo{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    border-radius: 10px;
+    height: 90%;
+    width: 350px;
+}
+
+#linha{
+    border-right: #A245DE 2px solid;
 }
 
 .cadastro h1{
@@ -90,6 +103,13 @@ body{
     border-radius: 5px;
 }
 
+.campo input:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    background-color: #442f6d;
+}
+
 .campo button{
     font-size: 22px;
     width: 215px;
@@ -102,6 +122,38 @@ body{
     font-weight: bold;
 }
 
+.campo button:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    background-color: #6b3dc7;
+}
+
+
+.campo a{
+    font-size: 22px;
+    width: 215px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: arial;
+}
+
+.campo a:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    background-color: #6b3dc7;
+}
+
 .campo span{
     font-size: 20px;
     width: 100%;
@@ -112,11 +164,12 @@ body{
     display: flex;
 }
 
-.senha button{
+.senha a{
     width: 35px;
     height: 35px;
     background-color: transparent;
     margin-left: -40px;
+    margin-top: 5px;
 }
 
 .senha img{
@@ -132,3 +185,94 @@ body{
 }
 
 /* Fim login-cadastro */
+
+/* Começo Home */
+
+.home{
+    width: 100%;
+    height: 100%;
+    background-color: #291A47;
+}
+
+.header{
+    background-image: url("../assets/bg_mesa.jpg"); 
+    width: 100vw;
+    height: 300px;
+    background-size: cover;  
+}
+
+.header_gradient{
+    background-image: linear-gradient(to top, #291A47, rgba(41, 26, 71, 0.7), rgba(41, 26, 71, 0.4), rgba(41, 26, 71, 0.2));
+    width: 100vw;
+    height: 300px;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    width: 80%;   
+}
+
+.nav_bar{
+    padding: 2px;
+    background-color: #574a70d8;
+    height: fit-content;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    width: 170px;
+}
+
+.logo img{
+    height: 50px;
+}
+
+.itens_nav{
+    width: 45%;
+}
+
+.itens_nav ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user{
+    display: flex;
+    flex-direction: row;
+    float: right;
+    align-items: center;
+}
+
+.user a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.user img{
+    height: 40px;
+}
+
+/* Fim Home */
