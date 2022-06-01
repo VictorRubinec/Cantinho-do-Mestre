@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taverna do Mestre</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/funcoes.js"></script>
 </head>
 
-<body class="home">
+<body class="home" onload="validarSessao()">
 
     <div class="header">
         <div class="header_gradient">
@@ -22,16 +23,31 @@
 
                 <div class="itens_nav">
                     <ul>
-                        <li>Campanhas</li>
-                        <li>Encontre um Grupo</li>
-                        <li>Bestiário</li>
-                        <li>Itens</li>
-                        <li>Magias</li>
+                        <li class="item">
+                            <img src="assets/seta_dw.png">
+                            <a href="">Campanhas</a>
+                        </li>
+                        <li class="item">
+                            <img src="assets/seta_dw.png">
+                            <a href="">Encontre um Grupo</a>
+                        </li>
+                        <li class="item">
+                            <img src="assets/seta_dw.png">
+                            <a href="">Bestiário</a>
+                        </li>
+                        <li class="item">
+                            <img src="assets/seta_dw.png">
+                            <a href="">Itens</a>
+                        </li>
+                        <li class="item">
+                            <img src="assets/seta_dw.png">
+                            <a href="">Magias</a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="user">
-                    <a href="#" id="user_nome"> Entrar </a>
+                    <a href="#" id="user_nome"></a>
                     <img id="user_img" src="assets/user.png">
                 </div>
             </div>

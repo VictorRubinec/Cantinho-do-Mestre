@@ -38,7 +38,8 @@
     function rolagem(dado) {
 
         var v_qtde = Number(ipt_qtde.value),
-            v_num = 0;
+            v_num = 0,
+            soma = 0;
 
         div_resul.innerHTML = '';
 
@@ -47,7 +48,11 @@
             v_num = Math.random() * (dado - 1) + 1;
 
             div_resul.innerHTML += v_num.toFixed(0) + '<br>';
+
+            soma += v_num;
         }
+
+        div_resul.innerHTML += soma.toFixed(0) + '<br>';
     }
 
 </script>

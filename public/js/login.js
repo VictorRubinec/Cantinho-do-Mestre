@@ -41,9 +41,10 @@ function entrar() {
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.NOME_USUARIO = json.nome;
                 sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.APELIDO_USUARIO = json.apelido;
 
                 setTimeout(function () {
-                    window.location = "./dashboard/cards.html";
+                    window.location = "index.html";
                 }, 1000); // apenas para exibir o loading
 
             });

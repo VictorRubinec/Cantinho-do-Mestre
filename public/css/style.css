@@ -191,18 +191,18 @@ body{
 .home{
     width: 100%;
     height: 100%;
-    background-color: #291A47;
+    background-color: #8956F0;
 }
 
 .header{
-    background-image: url("../assets/bg_mesa.jpg"); 
+    background-image: url("../assets/bg_mesa.png"); 
     width: 100vw;
     height: 300px;
     background-size: cover;  
 }
 
 .header_gradient{
-    background-image: linear-gradient(to top, #291A47, rgba(41, 26, 71, 0.7), rgba(41, 26, 71, 0.4), rgba(41, 26, 71, 0.2));
+    background-image: linear-gradient(to top, #8956F0, rgba(137, 86, 240, 0.7), rgba(137, 86, 240, 0.4), rgba(137, 86, 240, 0.2));
     width: 100vw;
     height: 300px;
     background-size: cover;
@@ -216,9 +216,10 @@ body{
 
 .nav_bar{
     padding: 2px;
-    background-color: #574a70d8;
+    background-color: #402870;
     height: fit-content;
     width: 100vw;
+    height: 60px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -242,26 +243,42 @@ body{
 }
 
 .itens_nav{
-    width: 45%;
+    width: 55%;
 }
 
 .itens_nav ul{
-    list-style-type: none;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    color: #fff;
     width: 100%;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+    list-style-type: none;
+}
+
+.item{
+    display: flex;
+    align-items: center;
+}
+
+.item img{
+    height: 8px;
+    margin-right: 4px;
+    src: url("../assets/seta_dw.png");
+}
+
+.item a{
+    text-decoration: none;
+    color: #fff;
 }
 
 .user{
     display: flex;
     flex-direction: row;
-    float: right;
+    justify-content: right;
     align-items: center;
+    width: 140px;
 }
 
 .user a{
