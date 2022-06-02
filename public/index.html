@@ -1,57 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Taverna do Mestre</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
     <script src="js/funcoes.js"></script>
-</head>
+  </head>
 
-<body class="home" onload="validarSessao()">
-
+  <body class="home" onload="validarSessao()">
     <div class="header">
-        <div class="header_gradient">
-            <div class="nav_bar">
+      <div class="header_gradient">
+        <div class="nav_bar">
+          <div class="logo">
+            <img src="assets/logo.PNG" />
+          </div>
 
-                <div class="logo">
-                    <img src="assets/logo.PNG">
-                </div>
+          <div class="itens_nav">
+            <ul>
+              <li class="item">Campanhas</li>
+              <li class="item">Encontre um Grupo</li>
+              <li class="item">Bestiário</li>
+              <li class="item">Itens</li>
+              <li class="item">Magias</li>
+            </ul>
+          </div>
 
-                <div class="itens_nav">
-                    <ul>
-                        <li class="item">
-                            Campanhas
-                        </li>
-                        <li class="item">
-                            Encontre um Grupo
-                        </li>
-                        <li class="item">
-                            Bestiário
-                        </li>
-                        <li class="item">
-                            Itens
-                        </li>
-                        <li class="item">
-                            Magias
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="user">
-                    <a href="login.html" id="user_nome"></a>
-                    <img id="user_img" src="assets/user.png">
-                </div>
-            </div>
-
-            <div class="header_banner">
-                <span> Seja bem vindo a <br> Taverna do Mestre! </span>
-            </div>
+          <div class="user">
+            <a href="#" id="user_nome"></a>
+            <a href="login.html">
+              <img id="user_img" src="assets/user.png" />
+            </a>
+          </div>
         </div>
+
+        <div class="header_banner">
+          <span>
+            Seja bem vindo a <br />
+            Taverna do Mestre!
+          </span>
+        </div>
+      </div>
     </div>
-
-</body>
-
+    <div class="corpo">
+      <div class="container">
+        <div class="campanhas_destaque">
+          <div class="titulo">
+            <h1>Campanhas em Destaque</h1>
+          </div>
+          <div class="campanha">
+              <div class="campanha_item"></div>
+              <div class="campanha_item"></div>
+              <div class="campanha_item"></div>
+          </div>
+        </div>
+        <div class="novidades">
+          <div class="titulo">
+            <h1>Novidades</h1>
+          </div>
+          <div class="novidade">
+            <div class="novidade_item"></div>
+            <div class="novidade_item"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

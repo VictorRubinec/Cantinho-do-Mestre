@@ -16,8 +16,6 @@ function validarSessao() {
             ApelidoUser.innerHTML = apelido;
         }
         // finalizarAguardar();
-    } else {
-        window.location = "../login.html";
     }
 }
 
