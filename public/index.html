@@ -1,106 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Taverna do Mestre</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/funcoes.js"></script>
-  </head>
 
-  <body class="home" onload="validarSessao()">
-    <div class="header">
-      <div class="header_gradient">
-        <div class="nav_bar">
-          <div class="logo">
-            <img src="assets/logo.PNG" />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taverna do Mestre</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/funcoes.js"></script>
+</head>
 
-          <div class="itens_nav">
-            <ul>
-              <li class="item">Campanhas</li>
-              <li class="item">Encontre um Grupo</li>
-              <li class="item">Bestiário</li>
-              <li class="item">Itens</li>
-              <li class="item">Magias</li>
-            </ul>
-          </div>
-
-          <div class="user">
-            <a href="#" id="user_nome"></a>
-            <a href="login.html">
-              <img id="user_img" src="assets/user.png" />
-            </a>
-          </div>
+<body class="home" onload="validarSessao()">
+  <div class="header">
+    <div class="header_gradient">
+      <div class="nav_bar">
+        <div class="logo">
+          <img src="assets/logo.PNG" />
         </div>
 
-        <div class="header_banner">
-          <span>
-            Seja bem vindo a <br />
-            Taverna do Mestre!
-          </span>
+        <div class="itens_nav">
+          <ul>
+            <li class="item">Campanhas</li>
+            <li class="item">Encontre um Grupo</li>
+            <li class="item">Bestiário</li>
+            <li class="item">Itens</li>
+            <li class="item">Magias</li>
+          </ul>
+        </div>
+
+        <div class="user">
+          <a href="#" id="user_nome"></a>
+          <a href="login.html">
+            <img id="user_img" src="assets/user.png" />
+          </a>
         </div>
       </div>
+
+      <div class="header_banner">
+        <span>
+          Seja bem vindo a <br />
+          Taverna do Mestre!
+        </span>
+      </div>
     </div>
-    <div class="corpo">
-      <div class="container">
-        <div class="vertical_container">
-          <div class="descricao_site">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam,
-            error libero consequatur saepe expedita, tempora nobis ex explicabo
-            similique quo voluptatem beatae aut reprehenderit! Inventore ratione
-            nam ipsam eius eos?
+  </div>
+  <div class="corpo">
+    <div class="container">
+      <div class="vertical_container">
+        <div class="descricao_site">
+          Na taverna do Mestre você pode encontrar diversos itens e magias 
+        </div>
+        <div class="campanhas_destaque">
+          <div class="titulo">
+            <h1>Campanhas em Destaque</h1>
           </div>
-          <div class="campanhas_destaque">
-            <div class="titulo">
-              <h1>Campanhas em Destaque</h1>
-            </div>
-            <div class="campanha">
-              <div
-                class="campanha_item"
-                id="campanha1"
-                style="background-image: url(assets/campanha1.PNG)"
-              >
+          <div class="campanha">
+            <div class="campanha_item" id="campanha1" style="background-image: url(assets/campanha1.PNG)">
+              <div class="champanha_mascara">
                 <h2>Espinhos da Aurora Escalate</h2>
               </div>
-              <div
-                class="campanha_item"
-                id="campanha2"
-                style="background-image: url(assets/campanha1.PNG)"
-              >
+            </div>
+            <div class="campanha_item" id="campanha2" style="background-image: url(assets/bg_mesa.png);">
+              <div class="champanha_mascara">
                 <h2>A Podridão</h2>
               </div>
-              <div
-                class="campanha_item"
-                id="campanha3"
-                style="background-image: url(assets/campanha1.PNG)"
-              >
+            </div>
+            <div class="campanha_item" id="campanha3" style="background-image: url(assets/campanha1.PNG)">
+              <div class="champanha_mascara">
                 <h2>Vínculo de Babel</h2>
               </div>
             </div>
           </div>
         </div>
-        <div class="novidades">
-          <div class="titulo">
-            <h1>Novidades</h1>
+      </div>
+      <div class="novidades">
+        <div class="titulo">
+          <h1>Novidades</h1>
+        </div>
+        <div class="novidade">
+          <div class="novidade_item">
+            <h2>! Lançamento do Site !</h2>
+            <p>Estou feliz de lançar este site, juntos criaremos uma comunidade incrível para jogarmos!</p>
           </div>
-          <div class="novidade">
-            <div class="novidade_item">
-              <h1>Lançamento do Site</h1>
-            </div>
-            <div class="novidade_item">
-              <h1>Sistema de Ordem Paranormal lançado</h1>
-            </div>
-            <div class="novidade_item">
-              <h1>
-                Livro 'O Caldeirão de Tasha para tudo' ganhou sua versão
-                brasileira
-              </h1>
-            </div>
+          <div class="novidade_item">
+            <h2>Sistema de Ordem Paranormal lançado</h2>
+            <p>O sistema de um dos maiores rpgs brasileros foi lançado oficialmente</p>
+          </div>
+          <div class="novidade_item">
+            <h2>Livro 'O Caldeirão de Tasha para tudo' ganhou sua versão brasileira</h2>
+            <p>Novo livro de regras adicional de D&D está disponível!</p>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

@@ -365,23 +365,36 @@ body{
     margin-bottom: 20px;
     height: 200px;
     width: 30%;
-    background-color:#972fdda1;
+    background-color:#3A2563;
     border-radius: 16px;
     display: flex;
+    align-items: end;
     background-size: cover;
     background-position: center;
+    background-repeat: none;
+    cursor: pointer;
+    transition: all .2s ease-in-out
 }
 
-.campanha_item h2{
-    height: auto;
+.campanha_item:hover {
+    box-shadow:2px 4px 1px #120a16;
+    background-size: cover - 90px;
+    text-decoration:underline 2px;
+}
+
+.campanha_item .champanha_mascara{
+    height: 50%;
     width: 100%;
-    border-radius: 16px;
-    background-image: linear-gradient(to top, #972fdd, #972fdd,#972fdd00,#972fdd00);
+    border-radius: 15px;
+    background-image: linear-gradient(to top, #3A2563, #3A2563,#3A2563,#972fdd00);
     display: flex;
     text-align: center;
     justify-content: center;
-    align-items: end;
-    padding: 10px;
+    align-items: center;
+}
+
+.champanha_mascara h2{
+    padding-top: 25px;
 }
 
 .novidades{
@@ -401,9 +414,24 @@ body{
 }
 
 .novidade_item{
-    margin-top: 20px;
-    height: 120px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 33%;
+    border-bottom: #563C89 1px solid;
+}
+
+.novidade_item h2{
+    font-size: 19px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.novidade_item p{
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+    text-align: justify;
 }
 
 .titulo{
