@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taverna do Mestre</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/funcoes.js"></script>
+    <link rel="shortcut icon" href="assets/nav_logo.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="perfil_pag"
+    onload="carregarFunc(), validarSessao(), perfilUsuario(data.idUsuario), obterCampanhasPerfil()">
+    <div class="nav_bar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo.PNG" />
+            </a>
+        </div>
+
+        <div class="itens_nav">
+            <ul>
+                <li class="item"><a class="t_item" href="lista.html?filtro=campanha">Campanhas</a>
+                    <ul class="sub_item">
+                        <li><a href="lista.html?filtro=campanha-ordem">Ordem Paranormal</a></li>
+                        <li><a href="lista.html?filtro=campanha-ded">D&D</a></li>
+                        <li><a href="lista.html?filtro=campanha-pronta">Histórias Prontas</a></li>
+                        <li class="u_s_item"><a href="lista.html?filtro=grupo">Encontrar um grupo</a></li>
+                    </ul>
+                </li>
+                <li class="item">Explorar
+                    <ul class="sub_item">
+                        <li><a href="lista.html?filtro=besta">Bestiário</a></li>
+                        <li><a href="lista.html?filtro=item">Itens</a></li>
+                        <li class="u_s_item"><a href="lista.html?filtro=magia">Magias</a></li>
+                    </ul>
+                </li>
+                <div id="criar">
+                    <li class="item">
+                        <a href="criar.html">Criar</a>
+                    </li>
+                </div>
+                <li class="item">
+                    <a href="sobre.html">Sobre</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="user">
+            <li class="item"><a href="perfil.html" id="user_nome"></a>
+              <ul class="sub_item">
+                <li class="u_s_item"><a onclick="limparSessao()">Sair</a></li>
+              </ul>
+            </li>
+            <a href="login.html">
+              <img id="user_img" src="assets/user.png" />
+            </a>
+          </div>
+    </div>
+    <div class="corpo">
+        <div class="container">
+            <div class="perfil">
+                <div class="perfil_header">
+                    <div class="perfil_img">
+                        <img src="assets/user.png" />
+                    </div>
+                    <div class="perfil_nome">
+                        <h1 id="perfil_apelido"></h1>
+                        <h2 id="perfil_nome"></h2>
+                    </div>
+                </div>
+                <div class="perfil_corpo">
+                    <div class="bio">
+                        <h1>Bio:</h1>
+                        <p id="perfil_bio"></p>
+                    </div>
+                    <div class="info">
+                        <div class="perfil_campanha">
+                            <h1>Últimas Campanhas:</h1>
+                            <div id="perfil_campanha_lista"></div>
+                        </div>
+                        <div class="chart">
+                            <h1>Sistemas do Mestre:</h1>
+                            <div class="chart_grafico">
+                                <canvas id="graficos"></canvas>
+                                <span id="erro">
+                                    Usuários não possui nenhuma mesa!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+
+<script>
+
+    var data = {}
+
+    function carregarFunc() {
+
+        var query = location.search.slice(1);
+        var partes = query.split("&");
+
+        partes.forEach(function (parte) {
+            var chaveValor = parte.split("=");
+            var chave = chaveValor[0];
+            var valor = chaveValor[1];
+            data[chave] = valor;
+        });
+
+        console.log(data.idUsuario);
+
+        obterDadosGrafico(data.idUsuario);
+    }
+
+    function obterDadosGrafico(idUsuario) {
+
+        fetch(`/medidas/ultimas/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    // resposta.reverse();
+
+                    plotarGrafico(resposta, idUsuario);
+                })
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados: ${error.message}`);
+                        erro.style.display = "block";
+                        graficos.style.display = "none";
+                    });;
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    // só altere aqui se souber o que está fazendo!
+    function plotarGrafico(resposta, idUsuario) {
+
+        const sistemas = [];
+        const campanhas = [];
+        const dados = [];
+        //colocar data atual numa variavel
+        console.log(resposta);
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+
+            if (registro.sistema == 'campanha-ordem') {
+                campanhas.push('Ordem Paranormal');
+            } else if (registro.sistema == 'campanha-ded') {
+                campanhas.push('D&D');
+            }
+
+            sistemas.push(registro.sistema);
+            dados.push(registro.qtd);
+        }
+
+        console.log(dados);
+
+        const qtdSitemas = {
+            labels: campanhas,
+            datasets: [
+                {
+                    backgroundColor: "#99179A",
+                    borderColor: "#660F66",
+                    data: dados,
+                }
+            ],
+        };
+        const config = {
+            type: "pie",
+            data: qtdSitemas,
+            options: {},
+        };
+
+        console.log(JSON.stringify(dados));
+
+        const grafico_perfil = new Chart(document.getElementById("graficos"), config);
+        //setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+    }
+
+    function obterCampanhasPerfil() {
+
+        var idUsuario = data.idUsuario;
+
+        fetch(`/medidas/campanhasPerfil/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                console.log(response);
+
+                response.json().then(json => {
+
+                    console.log(JSON.stringify(json) + 'teste');
+                    json.forEach(camp => {
+                        console.log(camp.nome)
+                        perfil_campanha_lista.innerHTML += `
+                        <a class='campanha_link' href='artigo.html?idArtigo=${camp.idArtigo}'>
+                            <div class="campanha_item" style="background-image: url(assets/campanha1.PNG)">
+                                <div class="campanha_mascara">
+                                    <h2>${camp.tituloArtigo}</h2>
+                                </div>
+                            </div>
+                        </a>`
+                        // acabarCarregar();
+                    });
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+</script>

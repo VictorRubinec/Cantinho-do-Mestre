@@ -8,28 +8,53 @@
   <title>Taverna do Mestre</title>
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/funcoes.js"></script>
+  <link rel="shortcut icon" href="assets/nav_logo.png" type="image/x-icon">
 </head>
 
-<body class="home" onload="validarSessao()">
+<body class="home" onload="validarSessao(), campanhasDestaque()">
   <div class="header">
     <div class="header_gradient">
       <div class="nav_bar">
         <div class="logo">
-          <img src="assets/logo.PNG" />
+          <a href="index.html">
+            <img src="assets/logo.PNG" />
+          </a>
         </div>
 
         <div class="itens_nav">
           <ul>
-            <li class="item">Campanhas</li>
-            <li class="item">Encontre um Grupo</li>
-            <li class="item">Bestiário</li>
-            <li class="item">Itens</li>
-            <li class="item">Magias</li>
+            <li class="item"><a class="t_item" href="lista.html?filtro=campanha">Campanhas</a>
+              <ul class="sub_item">
+                <li><a href="lista.html?filtro=campanha-ordem">Ordem Paranormal</a></li>
+                <li><a href="lista.html?filtro=campanha-ded">D&D</a></li>
+                <li><a href="lista.html?filtro=campanha-pronta">Histórias Prontas</a></li>
+                <li class="u_s_item"><a href="lista.html?filtro=grupo">Encontrar um grupo</a></li>
+              </ul>
+            </li>
+            <li class="item">Explorar
+              <ul class="sub_item">
+                <li><a href="lista.html?filtro=besta">Bestiário</a></li>
+                <li><a href="lista.html?filtro=item">Itens</a></li>
+                <li class="u_s_item"><a href="lista.html?filtro=magia">Magias</a></li>
+              </ul>
+            </li>
+            <div id="criar">
+              <li class="item">
+                <a href="criar.html">Criar</a>
+              </li>
+            </div>
+            <li class="item">
+              <a href="sobre.html">Sobre</a>
+            </li>
           </ul>
         </div>
 
         <div class="user">
-          <a href="#" id="user_nome"></a>
+          <li class="item"><a href="perfil.html" id="user_nome"></a>
+            <ul class="sub_item">
+              <li class="u_s_item"><a onclick="limparSessao()">Sair</a></li>
+            </ul>
+          </li>
           <a href="login.html">
             <img id="user_img" src="assets/user.png" />
           </a>
@@ -51,7 +76,7 @@
           <p> Um lugar cheio de histórias, aventuras, personagens cativiantes, lendas de monstros, magias
             poderosíssimas e itens lendários. Essa é a Taverna do Mestre, compartilhe também suas histórias. </p><br>
           <div class="slogan">
-            <p>Uma boa avetura começa em uma taverna.</p>
+            <p>Uma boa aventura começa em uma taverna.</p>
           </div>
         </div>
         <div class="campanhas_destaque">
@@ -59,21 +84,7 @@
             <h1>Campanhas em Destaque</h1>
           </div>
           <div class="campanha">
-            <div class="campanha_item" id="campanha1" style="background-image: url(assets/campanha1.PNG)">
-              <div class="champanha_mascara">
-                <h2>Espinhos da Aurora Escalate</h2>
-              </div>
-            </div>
-            <div class="campanha_item" id="campanha2" style="background-image: url(assets/bg_mesa.png);">
-              <div class="champanha_mascara">
-                <h2>A Podridão</h2>
-              </div>
-            </div>
-            <div class="campanha_item" id="campanha3" style="background-image: url(assets/campanha1.PNG)">
-              <div class="champanha_mascara">
-                <h2>Vínculo de Babel</h2>
-              </div>
-            </div>
+            <div id="campanha"></div>
           </div>
         </div>
       </div>
@@ -101,3 +112,37 @@
 </body>
 
 </html>
+
+<script>
+
+  function campanhasDestaque() {
+
+    fetch(`/medidas/campanhasDestaque`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        console.log(response);
+
+        response.json().then(json => {
+
+          console.log(JSON.stringify(json) + 'teste');
+          json.forEach(camp => {
+            campanha.innerHTML += `
+            <a class='campanha_link' href='artigo.html?idArtigo=${camp.idArtigo}'>
+              <div class="campanha_item" style="background-image: url(assets/campanha1.PNG)">
+                <div class="campanha_mascara">
+                  <h2>${camp.tituloArtigo}</h2>
+                </div>
+              </div>
+            </a>`
+            // acabarCarregar();
+          });
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    }).catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+  }
+
+</script>

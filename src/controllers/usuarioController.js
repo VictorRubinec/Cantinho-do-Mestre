@@ -24,6 +24,25 @@ function listar(req, res) {
         );
 }
 
+function usuarioPerfil(req, res) {
+    var id = req.body.idUsuario;
+    usuarioModel.usuarioPerfil(id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function entrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -33,7 +52,7 @@ function entrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
+
         usuarioModel.entrar(email, senha)
             .then(
                 function (resultado) {
@@ -77,7 +96,7 @@ function cadastrar(req, res) {
     } else if (apelido == undefined) {
         res.status(400).send("Sua apelido está undefined!");
     } else {
-        
+
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, apelido, email, senha)
             .then(
@@ -101,5 +120,6 @@ module.exports = {
     entrar,
     cadastrar,
     listar,
-    testar
+    testar,
+    usuarioPerfil
 }

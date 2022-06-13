@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taverna do Mestre</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/funcoes.js"></script>
+    <link rel="shortcut icon" href="assets/nav_logo.png" type="image/x-icon">
+</head>
+
+<body class="campanha_pag" onload="validarSessao(), obterLista()">
+    <div class="nav_bar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo.PNG" />
+            </a>
+        </div>
+
+        <div class="itens_nav">
+            <ul>
+                <li class="item"><a class="t_item" href="lista.html?filtro=campanha">Campanhas</a>
+                    <ul class="sub_item">
+                        <li><a href="lista.html?filtro=campanha-ordem">Ordem Paranormal</a></li>
+                        <li><a href="lista.html?filtro=campanha-ded">D&D</a></li>
+                        <li><a href="lista.html?filtro=campanha-pronta">Histórias Prontas</a></li>
+                        <li class="u_s_item"><a href="lista.html?filtro=grupo">Encontrar um grupo</a></li>
+                    </ul>
+                </li>
+                <li class="item">Explorar
+                    <ul class="sub_item">
+                        <li><a href="lista.html?filtro=besta">Bestiário</a></li>
+                        <li><a href="lista.html?filtro=item">Itens</a></li>
+                        <li class="u_s_item"><a href="lista.html?filtro=magia">Magias</a></li>
+                    </ul>
+                </li>
+                <div id="criar">
+                    <li class="item">
+                        <a href="criar.html">Criar</a>
+                    </li>
+                </div>
+                <li class="item">
+                    <a href="sobre.html">Sobre</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="user">
+            <li class="item"><a href="perfil.html" id="user_nome"></a>
+                <ul class="sub_item">
+                    <li class="u_s_item"><a onclick="limparSessao()">Sair</a></li>
+                </ul>
+            </li>
+            <a href="login.html">
+                <img id="user_img" src="assets/user.png" />
+            </a>
+        </div>
+    </div>
+    <div class="corpo">
+        <div class="container">
+            <div class="lista">
+                <h1 id="lista_titulo"></h1>
+                <div class="listar_campo" id="listar_campo"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    var data = {}
+
+    function obterLista() {
+
+        var query = location.search.slice(1);
+        var partes = query.split("&");
+
+        partes.forEach(function (parte) {
+            var chaveValor = parte.split("=");
+            var chave = chaveValor[0];
+            var valor = chaveValor[1];
+            data[chave] = valor;
+        });
+        console.log(data.filtro);
+
+        var titulo = 0;
+
+        if (data.filtro == "campanha") {
+            titulo = "Campanhas";
+        } else if (data.filtro == "campanha-ordem") {
+            titulo = "Campanhas de Ordem Paranormal";
+        } else if (data.filtro == "campanha-ded") {
+            titulo = "Campanhas de Dungeons & Dragons";
+        } else if (data.filtro == "campanha-pronta") {
+            titulo = "Histórias Prontas";
+        } else if (data.filtro == "grupo") {
+            titulo = "Encontrar um grupo";
+        } else if (data.filtro == "besta") {
+            titulo = "Bestiário";
+        } else if (data.filtro == "item") {
+            titulo = "Itens";
+        } else if (data.filtro == "magia") {
+            titulo = "Magias";
+        }
+
+        lista_titulo.innerHTML = titulo;
+
+        var sistema = 0;
+
+        fetch(`/medidas/lista/${data.filtro}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                console.log(response);
+
+                response.json().then(json => {
+
+                    console.log(JSON.stringify(json) + 'teste');
+                    json.forEach(camp => {
+
+                        if (camp.tipoArtigo == 'campanha-ded') {
+                            sistema = 'D&D';
+                        } else if (camp.tipoArtigo == 'campanha-ordem') {
+                            sistema = 'Ordem Paranormal';
+                        }
+
+                        listar_campo.innerHTML += `
+                            <a href="artigo.html?idArtigo=${camp.idArtigo}" class="lista_item">
+                                <div class="lista_img" style="background-image: url(assets/campanha1.PNG);"></div>
+                                <div class="lista_conteudo">
+                                    <h2>${camp.tituloArtigo}</h2>
+                                    <p id="Sistema">
+                                        <b>Sistema:</b> ${sistema}
+                                    </p>
+                                    <p id="Descricao">
+                                        <b>Descrição:</b> ${camp.descricaoArtigo}
+                                    </p>
+                                </div>
+                            </a>`
+                    });
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+
+</script>

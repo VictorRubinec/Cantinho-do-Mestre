@@ -39,9 +39,10 @@ function entrar() {
                 console.log(JSON.stringify(json));
 
                 sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                sessionStorage.ID_USUARIO = json.idUsuario;
                 sessionStorage.APELIDO_USUARIO = json.apelido;
+                sessionStorage.BIO_USUARIO = json.bio;
 
                 setTimeout(function () {
                     window.location = "index.html";
@@ -130,5 +131,5 @@ function sair() {
     aguardar();
     sessionStorage.clear();
     finalizarAguardar();
-    window.location = "login.html";
+    window.location = "index.html";
 }

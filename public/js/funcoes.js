@@ -8,22 +8,78 @@ function validarSessao() {
 
     var ApelidoUser = document.getElementById("user_nome");
 
-    if (email != null && nome != null) {
-        // window.alert(`Seja bem-vindo, ${nome}!`);
-        if (apelido == undefined) {
-            ApelidoUser.innerHTML = '';
-        } else {
-            ApelidoUser.innerHTML = apelido;
-        }
-        // finalizarAguardar();
+    console.log(email);
+
+    // window.alert(`Seja bem-vindo, ${nome}!`);
+    if (apelido == undefined) {
+        ApelidoUser.innerHTML = '';
+        criar.style.display = 'none';
+    } else {
+        ApelidoUser.innerHTML = apelido;
+        user_nome.href = 'perfil.html?idUsuario=' + sessionStorage.ID_USUARIO;
+        criar.style.display = 'block';
     }
+    // finalizarAguardar();
+}
+
+
+function perfilUsuario() {
+    // aguardar();
+
+    fetch("/usuarios/usuarioPerfil", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuario: data.idUsuario,
+        })
+
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO que pega dados do usuario")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+
+                console.log(JSON.stringify(json));
+
+                var ApelidoPerfil = document.getElementById("perfil_apelido");
+                var NomePerfil = document.getElementById("perfil_nome");
+                var BioPerfil = document.getElementById("perfil_bio");
+
+                // window.alert(`Seja bem-vindo, ${email}!`);
+
+                ApelidoPerfil.innerHTML = json[0].apelido;
+                NomePerfil.innerHTML = json[0].nomeUsuario;
+                BioPerfil.innerHTML = json[0].bio;
+
+                // finalizarAguardar();
+
+            });
+            // acabarCarregar()
+        } else {
+
+            console.log("Houve um erro ao tentar pegar os dados da empresa!");
+
+            // resposta.text().then(texto => {
+            //     console.log(texto);
+            //     finalizarAguardar(texto);
+            // });
+        }
+    })
+    // .catch(function (erro) {
+    //     console.log(erro);
+    //     alert(erro)
+    // });
 }
 
 function limparSessao() {
     // aguardar();
     sessionStorage.clear();
     // finalizarAguardar();
-    window.location = "../login.html";
+    window.location = "../index.html";
 }
 
 // carregamento (loading)
