@@ -50,6 +50,8 @@
         <div class="user">
             <li class="item"><a href="perfil.html" id="user_nome"></a>
                 <ul class="sub_item">
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li><a href="listaUser.html">Minha Biblioteca</a></li>
                     <li class="u_s_item"><a onclick="limparSessao()">Sair</a></li>
                 </ul>
             </li>
@@ -109,7 +111,8 @@
 
         lista_titulo.innerHTML = titulo;
 
-        var sistema = 0;
+        var subTipo = 0,
+            tipo = 0;
 
         fetch(`/medidas/lista/${data.filtro}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -120,10 +123,67 @@
                     console.log(JSON.stringify(json) + 'teste');
                     json.forEach(camp => {
 
+                        // campanhas
                         if (camp.tipoArtigo == 'campanha-ded') {
-                            sistema = 'D&D';
+                            subTipo = 'D&D';
+                            tipo = 'Sistema: ';
                         } else if (camp.tipoArtigo == 'campanha-ordem') {
-                            sistema = 'Ordem Paranormal';
+                            subTipo = 'Ordem Paranormal';
+                            tipo = 'Sistema: ';
+                        } 
+                        
+                        //grupos
+                        else if (camp.tipoArtigo == 'grupo-ordem') {
+                            subTipo = 'Ordem Paranomal';
+                            tipo = 'Sistema: ';
+                        } else if (camp.tipoArtigo == 'grupo-ded') {
+                            subTipo = 'D&D';
+                            tipo = 'Sistema: ';
+                        } 
+                        
+                        //bestas
+                        else if (camp.tipoArtigo == 'besta') {
+                            subTipo = 'Monstro';
+                            tipo = 'Tipo: ';
+                        } 
+                        
+                        // itens
+                        else if (camp.tipoArtigo == 'item-comum') {
+                            subTipo = 'Comum';
+                            tipo = 'Raridade: ';
+                        } else if (camp.tipoArtigo == 'item-raro') {
+                            subTipo = 'Raro';
+                            tipo = 'Raridade: ';
+                        } else if (camp.tipoArtigo == 'item-ultrararo') {
+                            subTipo = 'Ultra Raro';
+                            tipo = 'Raridade: ';
+                        } else if (camp.tipoArtigo == 'item-lendario') {
+                            subTipo = 'Lendário';
+                            tipo = 'Raridade: ';
+                        }
+                        
+                        // magias
+                        else if (data.filtro == "magia-n1") {
+                            subTipo = '1';
+                            tipo = 'Nivel: ';
+                        } else if (data.filtro == "magia-n2") {
+                            subTipo = '2';
+                            tipo = 'Nivel: ';
+                        } else if (data.filtro == "magia-n3") {
+                            subTipo = '3';
+                            tipo = 'Nivel: ';
+                        } else if (data.filtro == "magia-n4") {
+                            subTipo = '4';
+                            tipo = 'Nivel: ';
+                        } else if (data.filtro == "magia-n5") {
+                            subTipo = '5';
+                            tipo = 'Nivel: ';
+                        } else if (data.filtro == "magia-n6") {
+                            subTipo = '6';
+                            tipo = 'Nivel: ';
+                        } else if (data.filtro == "magia-n7") {
+                            subTipo = '7';
+                            tipo = 'Nivel: ';
                         }
 
                         listar_campo.innerHTML += `
@@ -131,10 +191,10 @@
                                 <div class="lista_img" style="background-image: url(assets/campanha1.PNG);"></div>
                                 <div class="lista_conteudo">
                                     <h2>${camp.tituloArtigo}</h2>
-                                    <p id="Sistema">
-                                        <b>Sistema:</b> ${sistema}
+                                    <p>
+                                        <b>${tipo}</b> ${subTipo}
                                     </p>
-                                    <p id="Descricao">
+                                    <p>
                                         <b>Descrição:</b> ${camp.descricaoArtigo}
                                     </p>
                                 </div>

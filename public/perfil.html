@@ -51,14 +51,16 @@
 
         <div class="user">
             <li class="item"><a href="perfil.html" id="user_nome"></a>
-              <ul class="sub_item">
-                <li class="u_s_item"><a onclick="limparSessao()">Sair</a></li>
-              </ul>
+                <ul class="sub_item">
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li><a href="listaUser.html">Minha Biblioteca</a></li>
+                    <li class="u_s_item"><a onclick="limparSessao()">Sair</a></li>
+                </ul>
             </li>
             <a href="login.html">
-              <img id="user_img" src="assets/user.png" />
+                <img id="user_img" src="assets/user.png" />
             </a>
-          </div>
+        </div>
     </div>
     <div class="corpo">
         <div class="container">
@@ -202,7 +204,6 @@
 
                     console.log(JSON.stringify(json) + 'teste');
                     json.forEach(camp => {
-                        console.log(camp.nome)
                         perfil_campanha_lista.innerHTML += `
                         <a class='campanha_link' href='artigo.html?idArtigo=${camp.idArtigo}'>
                             <div class="campanha_item" style="background-image: url(assets/campanha1.PNG)">
