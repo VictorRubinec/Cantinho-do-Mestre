@@ -58,7 +58,7 @@
               </ul>
           </li>
           <a href="login.html">
-              <img id="user_img" src="assets/user.png" />
+              <div id="user_img" class="user_img" style="background-image: url(assets/user.png)"></div>
           </a>
       </div>
       </div>
@@ -129,7 +129,7 @@
           json.forEach(camp => {
             campanha.innerHTML += `
             <a class='campanha_link' href='artigo.html?idArtigo=${camp.idArtigo}'>
-              <div class="campanha_item" style="background-image: url(assets/campanha1.PNG)">
+              <div class="campanha_item" style="background-image: url(../assets/imagens/${camp.capa})">
                 <div class="campanha_mascara">
                   <h2>${camp.tituloArtigo}</h2>
                 </div>

@@ -5,6 +5,7 @@ function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
     var apelido = sessionStorage.APELIDO_USUARIO;
+    var foto = sessionStorage.FOTO_USUARIO;
 
     var ApelidoUser = document.getElementById("user_nome");
 
@@ -19,7 +20,12 @@ function validarSessao() {
         user_nome.href = 'perfil.html?idUsuario=' + sessionStorage.ID_USUARIO;
         b_user.href = 'listaUser.html?idUsuario=' + sessionStorage.ID_USUARIO;
         criar.style.display = 'block';
-        
+
+        if (foto != null || foto != undefined || foto != '') {
+
+            user_img.src = '../assets/imagens/' + foto;
+        }
+
     }
     // finalizarAguardar();
 }
@@ -56,6 +62,10 @@ function perfilUsuario() {
                 ApelidoPerfil.innerHTML = json[0].apelido;
                 NomePerfil.innerHTML = json[0].nomeUsuario;
                 BioPerfil.innerHTML = json[0].bio;
+
+                if (json[0].idUsuario == sessionStorage.ID_USUARIO) {
+                    b_editar.style.display = 'block';
+                }
 
                 // finalizarAguardar();
 

@@ -56,8 +56,8 @@
                 </ul>
             </li>
             <a href="login.html">
-                <img id="user_img" src="assets/user.png" />
-            </a>
+              <div id="user_img" class="user_img" style="background-image: url(assets/user.png)"></div>
+          </a>
         </div>
     </div>
     <div class="corpo">
@@ -143,7 +143,7 @@
                     <input type="text" id="artigo_titulo" placeholder="Título do artigo" />
                     <h2>Capa:</h2>
                     <div class="div_a_img">
-                        <input type="file" id="artigo_capa" />
+                        <input type="file" id="artigo_capa"/>
                     </div>
                     <h2>Descrição do artigo:</h2>
                     <textarea class="desc" id="artigo_descricao" placeholder="Descrição do artigo"></textarea>
@@ -318,20 +318,25 @@
 
         console.log(usuarioSession);
 
+        // pegando caminho do arquivo do input file
+        var file = document.getElementById("artigo_capa").files[0];
+        var fileName = file.name;
+        var filePath = file.path;
+        var fileSize = file.size;
+        var fileType = file.type;
+
         var ar_titulo = document.getElementById("artigo_titulo").value;
-        var ar_capa = document.getElementById("artigo_capa").value;
         var ar_descricao = document.getElementById("artigo_descricao").value;
         var ar_conteudo = document.getElementById("artigo_conteudo").value;
         var ar_insert = insert;
 
-        console.log(ar_capa);
+        console.log(fileName);
 
         if (ar_titulo == "" || ar_descricao == "" || ar_conteudo == "") {
             alert("Preencha todos os campos!");
             return;
         }
 
-        console.log(ar_capa);
         fetch("/medidas/cadastrarArtigo", {
             method: "POST",
             headers: {
@@ -343,7 +348,7 @@
                 usuarioServer: usuarioSession,
                 tituloServer: ar_titulo,
                 descricaoServer: ar_descricao,
-                capaServer: ar_capa,
+                capaServer: fileName,
                 conteudoServer: ar_conteudo,
                 tipoServer: ar_insert
             })
@@ -355,7 +360,7 @@
             if (resposta.ok) {
 
                 console.log("Cadastrado com sucesso");
-                // window.location = "listaUser?idUsuario=" + usuarioSession;
+                window.location = "listaUser?idUsuario=" + usuarioSession;
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }

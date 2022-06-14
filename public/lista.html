@@ -49,14 +49,14 @@
         <div class="user">
             <li class="item"><a class="t_item" href="perfil.html" id="user_nome"></a>
                 <ul class="sub_item">
-                    
-                     <li><a id="b_user" href="listaUser.html">Minha Biblioteca</a>
+
+                    <li><a id="b_user" href="listaUser.html">Minha Biblioteca</a>
                     <li class="u_s_item"><a onclick="limparSessao()">Sair</a></li>
                 </ul>
             </li>
             <a href="login.html">
-                <img id="user_img" src="assets/user.png" />
-            </a>
+              <div id="user_img" class="user_img" style="background-image: url(assets/user.png)"></div>
+          </a>
         </div>
     </div>
     <div class="corpo">
@@ -129,8 +129,8 @@
                         } else if (camp.tipoArtigo == 'campanha-ordem-f') {
                             subTipo = 'Ordem Paranormal';
                             tipo = 'Sistema: ';
-                        } 
-                        
+                        }
+
                         //grupos
                         else if (camp.tipoArtigo == 'campanha-ordem-a') {
                             subTipo = 'Ordem Paranomal';
@@ -138,7 +138,7 @@
                         } else if (camp.tipoArtigo == 'campanha-ded-a') {
                             subTipo = 'D&D';
                             tipo = 'Sistema: ';
-                        } 
+                        }
 
                         //historia
                         else if (camp.tipoArtigo == 'historia-ordem') {
@@ -148,13 +148,13 @@
                             subTipo = 'D&D';
                             tipo = 'Sistema: ';
                         }
-                        
+
                         //bestas
                         else if (camp.tipoArtigo == 'besta') {
                             subTipo = 'Criatura';
                             tipo = 'Tipo: ';
-                        } 
-                        
+                        }
+
                         // itens
                         else if (camp.tipoArtigo == 'item-comum') {
                             subTipo = 'Comum';
@@ -169,7 +169,7 @@
                             subTipo = 'Lendário';
                             tipo = 'Raridade: ';
                         }
-                        
+
                         // magias
                         else if (camp.tipoArtigo == "magia-n1") {
                             subTipo = '1';
@@ -193,10 +193,18 @@
                             subTipo = '7';
                             tipo = 'Nivel: ';
                         }
+                        else if (camp.tipoArtigo == "personagem-npc") {
+                            subTipo = 'NPC';
+                            tipo = 'Tipo: ';
+                        }
+                        else if (camp.tipoArtigo == "personagem-player") {
+                            subTipo = 'player';
+                            tipo = 'Tipo: ';
+                        }
 
                         listar_campo.innerHTML += `
                             <a href="artigo.html?idArtigo=${camp.idArtigo}" class="lista_item">
-                                <div class="lista_img" style="background-image: url(assets/campanha1.PNG);"></div>
+                                <div class="lista_img" style="background-image: url(../assets/imagens/${camp.capa});"></div>
                                 <div class="lista_conteudo">
                                     <h2>${camp.tituloArtigo}</h2>
                                     <p>

@@ -43,6 +43,7 @@ function entrar() {
                 sessionStorage.ID_USUARIO = json.idUsuario;
                 sessionStorage.APELIDO_USUARIO = json.apelido;
                 sessionStorage.BIO_USUARIO = json.bio;
+                sessionStorage.FOTO_USUARIO = json.foto;
 
                 setTimeout(function () {
                     window.location = "index.html";

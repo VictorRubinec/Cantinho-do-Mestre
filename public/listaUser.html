@@ -55,8 +55,8 @@
                 </ul>
             </li>
             <a href="login.html">
-                <img id="user_img" src="assets/user.png" />
-            </a>
+              <div id="user_img" class="user_img" style="background-image: url(assets/user.png)"></div>
+          </a>
         </div>
     </div>
     <div class="corpo">
@@ -178,9 +178,19 @@
                             tipo = 'Nivel: ';
                         }
 
+                        else if (camp.tipoArtigo == "personagem-npc"){
+                            subTipo = 'NPC';
+                            tipo = 'Tipo: ';
+                        }
+                        else if (camp.tipoArtigo == "personagem-player"){
+                            subTipo = 'player';
+                            tipo = 'Tipo: ';
+                        }
+
+
                         listar_campo.innerHTML += `
                             <a href="artigo.html?idArtigo=${camp.idArtigo}" class="lista_item">
-                                <div class="lista_img" style="background-image: url(assets/campanha1.PNG);"></div>
+                                <div class="lista_img" style="background-image: url(../assets/imagens/${camp.capa});"></div>
                                 <div class="lista_conteudo">
                                     <h2>${camp.tituloArtigo}</h2>
                                     <p>

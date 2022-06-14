@@ -56,8 +56,8 @@
                 </ul>
             </li>
             <a href="login.html">
-                <img id="user_img" src="assets/user.png" />
-            </a>
+              <div id="user_img" class="user_img" style="background-image: url(assets/user.png)"></div>
+          </a>
         </div>
     </div>
     <div class="corpo">
@@ -174,7 +174,7 @@
                         artigo_exibir.innerHTML = `
                         <h1>${arti.tituloArtigo}</h1>
                             <div class="artigo_head">
-                                <div class="artigo_img" style="background-image: url('assets/campanha1.PNG')"></div>
+                                <div class="artigo_img" style="background-image: url('../assets/imagens/${arti.capa}')"></div>
                                 <div class="artigo_info">
                                     <div class="artigo_label">
                                         <h2>Autor: </h2>
