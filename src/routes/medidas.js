@@ -19,4 +19,17 @@ router.get("/campanhasDestaque", function (req, res) {
     medidaController.buscarCampanhasDestaque(req, res);
 });
 
+router.get("/artigo/:idArtigo", function (req, res) {
+    medidaController.buscarArtigo(req, res);
+});
+
+router.get("/listaUser/:idUsuario", function (req, res) {
+    medidaController.buscarListaUser(req, res);
+});
+
+router.post("/cadastrarArtigo", function (req, res) {
+    medidaController.cadastrarArtigo(req, res);
+});
+
+
 module.exports = router;

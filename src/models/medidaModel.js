@@ -14,7 +14,7 @@ function buscarCampanhasPerfil(idUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idUsuario)
     instrucaoSql = `select 
                         *
-                        from tbArtigo where fkUsuario = ${idUsuario} and tipoArtigo like 'campanha%'
+                        from tbArtigo where fkUsuario = ${idUsuario} and tipoArtigo like 'campanha%' 
                         order by idArtigo desc limit 2;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -23,9 +23,42 @@ function buscarCampanhasPerfil(idUsuario) {
 
 function listar(filtro) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", filtro)
-    instrucaoSql = `select 
+
+    if (filtro == 'a') {
+        instrucaoSql = `select 
+                            *
+                            from tbArtigo where tipoArtigo like '%${filtro}';`;
+    } else {
+
+        instrucaoSql = `select 
                         *
                         from tbArtigo where tipoArtigo like '${filtro}%';`;
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarListaUser(idUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idUsuario)
+
+
+    instrucaoSql = `select 
+                            *
+                            from tbUsuario, tbArtigo where idUsuario = '${idUsuario}' and fkUsuario = idUsuario;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarArtigo(idArtigo) {
+    console.log("teste ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idArtigo)
+
+
+    instrucaoSql = `select 
+                        *
+                        from tbArtigo join tbUsuario on idArtigo = '${idArtigo}' and fkUsuario = idUsuario;`;
+
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -42,9 +75,25 @@ function buscarCampanhasDestaque(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function cadastrarArtigo(id, titulo, descricao, capa, conteudo, tipo) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", id, titulo, descricao, capa, conteudo, tipo);
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO tbArtigo (tituloArtigo, descricaoArtigo, textoArtigo, tipoArtigo, capa, fkUsuario) VALUES ('${titulo}', '${descricao}', '${conteudo}', '${tipo}', '${capa}','${id}');
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+
+    return database.executar(instrucao);
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarCampanhasPerfil,
     listar,
-    buscarCampanhasDestaque
+    buscarCampanhasDestaque,
+    cadastrarArtigo,
+    buscarArtigo,
+    buscarListaUser
 }

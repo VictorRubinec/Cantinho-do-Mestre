@@ -17,7 +17,9 @@ function validarSessao() {
     } else {
         ApelidoUser.innerHTML = apelido;
         user_nome.href = 'perfil.html?idUsuario=' + sessionStorage.ID_USUARIO;
+        b_user.href = 'listaUser.html?idUsuario=' + sessionStorage.ID_USUARIO;
         criar.style.display = 'block';
+        
     }
     // finalizarAguardar();
 }

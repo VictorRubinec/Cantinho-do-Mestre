@@ -27,13 +27,22 @@
 
     <br>
 
-    <input id="ipt_commands" on>
+    <input id="ipt_commands">
+    <button onclick="formatacao()"><b>Negrito</b></button>
+    <label></label>
 
 </body>
 
 </html>
 
 <script>
+
+    function formatacao() {
+
+        // mudar o texto selecionado para negrito
+        document.execCommand('bold');
+
+    }
 
     function rolagem(dado) {
 

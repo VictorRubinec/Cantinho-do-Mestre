@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="assets/nav_logo.png" type="image/x-icon">
 </head>
 
-<body class="artigo_pag" onload="validarSessao(), obterArtigo()">
+<body class="campanha_pag" onload="validarSessao(), obterListaUser()">
     <div class="nav_bar">
         <div class="logo">
             <a href="index.html">
@@ -46,7 +46,6 @@
                 </li>
             </ul>
         </div>
-
         <div class="user">
             <li class="item"><a class="t_item" href="perfil.html" id="user_nome"></a>
                 <ul class="sub_item">
@@ -62,10 +61,12 @@
     </div>
     <div class="corpo">
         <div class="container">
-            <div class="artigo" id="artigo_exibir">
-
+            <div class="lista">
+                <h1 id="lista_titulo"></h1>
+                <div class="listar_campo" id="listar_campo"></div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
@@ -74,7 +75,7 @@
 
     var data = {};
 
-    function obterArtigo() {
+    function obterListaUser() {
 
         var query = location.search.slice(1);
         var partes = query.split("&");
@@ -85,115 +86,111 @@
             var valor = chaveValor[1];
             data[chave] = valor;
         });
-        console.log(data.idArtigo);
+
+        console.log(data.idUsuario);
 
         var subTipo = 0,
             tipo = 0;
 
-        fetch(`/medidas/artigo/${data.idArtigo}`, { cache: 'no-store' }).then(function (response) {
+        console.log('Registro obtido com sucesso ' + data.idUsuario);
+
+
+        fetch(`/medidas/listaUser/${data.idUsuario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 console.log(response);
 
                 response.json().then(json => {
 
                     console.log(JSON.stringify(json) + 'teste');
-                    json.forEach(arti => {
+                    json.forEach(camp => {
+
+                        lista_titulo.innerHTML = camp.nomeUsuario;
 
                         // campanhas
-                        if (arti.tipoArtigo == 'campanha-ded-f') {
+                        if (camp.tipoArtigo == 'campanha-ded-f') {
                             subTipo = 'D&D';
                             tipo = 'Sistema: ';
-                        } else if (arti.tipoArtigo == 'campanha-ordem-f') {
+                        } else if (camp.tipoArtigo == 'campanha-ordem-f') {
                             subTipo = 'Ordem Paranormal';
                             tipo = 'Sistema: ';
                         }
 
                         //grupos
-                        else if (arti.tipoArtigo == 'campanha-ordem-a') {
+                        else if (camp.tipoArtigo == 'campanha-ordem-a') {
                             subTipo = 'Ordem Paranomal';
                             tipo = 'Sistema: ';
-                        } else if (arti.tipoArtigo == 'campanha-ded-a') {
+                        } else if (camp.tipoArtigo == 'campanha-ded-a') {
                             subTipo = 'D&D';
                             tipo = 'Sistema: ';
                         }
 
                         //historia
-                        else if (arti.tipoArtigo == 'historia-ordem') {
+                        else if (camp.tipoArtigo == 'historia-ordem') {
                             subTipo = 'Ordem Paranormal';
                             tipo = 'Sistema: ';
-                        } else if (arti.tipoArtigo == 'historia-ded') {
+                        } else if (camp.tipoArtigo == 'historia-ded') {
                             subTipo = 'D&D';
                             tipo = 'Sistema: ';
                         }
 
                         //bestas
-                        else if (arti.tipoArtigo == 'besta') {
+                        else if (camp.tipoArtigo == 'besta') {
                             subTipo = 'Criatura';
                             tipo = 'Tipo: ';
                         }
 
                         // itens
-                        else if (arti.tipoArtigo == 'item-comum') {
+                        else if (camp.tipoArtigo == 'item-comum') {
                             subTipo = 'Comum';
                             tipo = 'Raridade: ';
-                        } else if (arti.tipoArtigo == 'item-incomum') {
+                        } else if (camp.tipoArtigo == 'item-incomum') {
                             subTipo = 'Incomum';
                             tipo = 'Raridade: ';
-                        } else if (arti.tipoArtigo == 'item-raro') {
+                        } else if (camp.tipoArtigo == 'item-raro') {
                             subTipo = 'Raro';
                             tipo = 'Raridade: ';
-                        } else if (arti.tipoArtigo == 'item-lendario') {
+                        } else if (camp.tipoArtigo == 'item-lendario') {
                             subTipo = 'Lendário';
                             tipo = 'Raridade: ';
                         }
 
                         // magias
-                        else if (arti.tipoArtigo == "magia-n1") {
+                        else if (camp.tipoArtigo == "magia-n1") {
                             subTipo = '1';
                             tipo = 'Nivel: ';
-                        } else if (arti.tipoArtigo == "magia-n2") {
+                        } else if (camp.tipoArtigo == "magia-n2") {
                             subTipo = '2';
                             tipo = 'Nivel: ';
-                        } else if (arti.tipoArtigo == "magia-n3") {
+                        } else if (camp.tipoArtigo == "magia-n3") {
                             subTipo = '3';
                             tipo = 'Nivel: ';
-                        } else if (arti.tipoArtigo == "magia-n4") {
+                        } else if (camp.tipoArtigo == "magia-n4") {
                             subTipo = '4';
                             tipo = 'Nivel: ';
-                        } else if (arti.tipoArtigo == "magia-n5") {
+                        } else if (camp.tipoArtigo == "magia-n5") {
                             subTipo = '5';
                             tipo = 'Nivel: ';
-                        } else if (arti.tipoArtigo == "magia-n6") {
+                        } else if (camp.tipoArtigo == "magia-n6") {
                             subTipo = '6';
                             tipo = 'Nivel: ';
-                        } else if (arti.tipoArtigo == "magia-n7") {
+                        } else if (camp.tipoArtigo == "magia-n7") {
                             subTipo = '7';
                             tipo = 'Nivel: ';
                         }
 
-                        artigo_exibir.innerHTML = `
-                        <h1>${arti.tituloArtigo}</h1>
-                            <div class="artigo_head">
-                                <div class="artigo_img" style="background-image: url('assets/campanha1.PNG')"></div>
-                                <div class="artigo_info">
-                                    <div class="artigo_label">
-                                        <h2>Autor: </h2>
-                                        <a href="perfil.html?idUsuario=${arti.idUsuario}">${arti.nomeUsuario} </a> <span> | </span> <a href="listaUser.html?idUsuario=${arti.idUsuario}">Biblioteca do Autor</a>
-                                    </div>
-                                    <div class="artigo_label">
-                                        <h2>${tipo}</h2>
-                                        <p>${subTipo}</p>
-                                    </div>
-                                    <div class="artigo_label">
-                                        <h2>Descrição:</h2>
-                                        <p>${arti.descricaoArtigo}</p>
-                                    </div>
+                        listar_campo.innerHTML += `
+                            <a href="artigo.html?idArtigo=${camp.idArtigo}" class="lista_item">
+                                <div class="lista_img" style="background-image: url(assets/campanha1.PNG);"></div>
+                                <div class="lista_conteudo">
+                                    <h2>${camp.tituloArtigo}</h2>
+                                    <p>
+                                        <b>${tipo}</b> ${subTipo}
+                                    </p>
+                                    <p>
+                                        <b>Descrição:</b> ${camp.descricaoArtigo}
+                                    </p>
                                 </div>
-                            </div>
-                            <div class="artigo_body">${arti.textoArtigo}</div>
-                        </div>
-                    `;
-
+                            </a>`
                     });
                 });
             } else {
@@ -203,7 +200,6 @@
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
     }
-
 
 
 </script>

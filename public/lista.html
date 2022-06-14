@@ -25,8 +25,8 @@
                     <ul class="sub_item">
                         <li><a href="lista.html?filtro=campanha-ordem">Ordem Paranormal</a></li>
                         <li><a href="lista.html?filtro=campanha-ded">D&D</a></li>
-                        <li><a href="lista.html?filtro=campanha-pronta">Histórias Prontas</a></li>
-                        <li class="u_s_item"><a href="lista.html?filtro=grupo">Encontrar um grupo</a></li>
+                        <li><a href="lista.html?filtro=historia">Histórias Prontas</a></li>
+                        <li class="u_s_item"><a href="lista.html?filtro=a">Encontrar um grupo</a></li>
                     </ul>
                 </li>
                 <li class="item">Explorar
@@ -38,20 +38,19 @@
                 </li>
                 <div id="criar">
                     <li class="item">
-                        <a href="criar.html">Criar</a>
+                        <a class="t_item" href="criar.html">Criar</a>
                     </li>
                 </div>
                 <li class="item">
-                    <a href="sobre.html">Sobre</a>
+                    <a class="t_item" href="sobre.html">Sobre</a>
                 </li>
             </ul>
         </div>
-
         <div class="user">
-            <li class="item"><a href="perfil.html" id="user_nome"></a>
+            <li class="item"><a class="t_item" href="perfil.html" id="user_nome"></a>
                 <ul class="sub_item">
-                    <li><a href="perfil.html">Perfil</a></li>
-                    <li><a href="listaUser.html">Minha Biblioteca</a></li>
+                    
+                     <li><a id="b_user" href="listaUser.html">Minha Biblioteca</a>
                     <li class="u_s_item"><a onclick="limparSessao()">Sair</a></li>
                 </ul>
             </li>
@@ -97,9 +96,9 @@
             titulo = "Campanhas de Ordem Paranormal";
         } else if (data.filtro == "campanha-ded") {
             titulo = "Campanhas de Dungeons & Dragons";
-        } else if (data.filtro == "campanha-pronta") {
+        } else if (data.filtro == "historia") {
             titulo = "Histórias Prontas";
-        } else if (data.filtro == "grupo") {
+        } else if (data.filtro == "a") {
             titulo = "Encontrar um grupo";
         } else if (data.filtro == "besta") {
             titulo = "Bestiário";
@@ -124,26 +123,35 @@
                     json.forEach(camp => {
 
                         // campanhas
-                        if (camp.tipoArtigo == 'campanha-ded') {
+                        if (camp.tipoArtigo == 'campanha-ded-f') {
                             subTipo = 'D&D';
                             tipo = 'Sistema: ';
-                        } else if (camp.tipoArtigo == 'campanha-ordem') {
+                        } else if (camp.tipoArtigo == 'campanha-ordem-f') {
                             subTipo = 'Ordem Paranormal';
                             tipo = 'Sistema: ';
                         } 
                         
                         //grupos
-                        else if (camp.tipoArtigo == 'grupo-ordem') {
+                        else if (camp.tipoArtigo == 'campanha-ordem-a') {
                             subTipo = 'Ordem Paranomal';
                             tipo = 'Sistema: ';
-                        } else if (camp.tipoArtigo == 'grupo-ded') {
+                        } else if (camp.tipoArtigo == 'campanha-ded-a') {
                             subTipo = 'D&D';
                             tipo = 'Sistema: ';
                         } 
+
+                        //historia
+                        else if (camp.tipoArtigo == 'historia-ordem') {
+                            subTipo = 'Ordem Paranormal';
+                            tipo = 'Sistema: ';
+                        } else if (camp.tipoArtigo == 'historia-ded') {
+                            subTipo = 'D&D';
+                            tipo = 'Sistema: ';
+                        }
                         
                         //bestas
                         else if (camp.tipoArtigo == 'besta') {
-                            subTipo = 'Monstro';
+                            subTipo = 'Criatura';
                             tipo = 'Tipo: ';
                         } 
                         
@@ -151,11 +159,11 @@
                         else if (camp.tipoArtigo == 'item-comum') {
                             subTipo = 'Comum';
                             tipo = 'Raridade: ';
+                        } else if (camp.tipoArtigo == 'item-incomum') {
+                            subTipo = 'Incomum';
+                            tipo = 'Raridade: ';
                         } else if (camp.tipoArtigo == 'item-raro') {
                             subTipo = 'Raro';
-                            tipo = 'Raridade: ';
-                        } else if (camp.tipoArtigo == 'item-ultrararo') {
-                            subTipo = 'Ultra Raro';
                             tipo = 'Raridade: ';
                         } else if (camp.tipoArtigo == 'item-lendario') {
                             subTipo = 'Lendário';
@@ -163,25 +171,25 @@
                         }
                         
                         // magias
-                        else if (data.filtro == "magia-n1") {
+                        else if (camp.tipoArtigo == "magia-n1") {
                             subTipo = '1';
                             tipo = 'Nivel: ';
-                        } else if (data.filtro == "magia-n2") {
+                        } else if (camp.tipoArtigo == "magia-n2") {
                             subTipo = '2';
                             tipo = 'Nivel: ';
-                        } else if (data.filtro == "magia-n3") {
+                        } else if (camp.tipoArtigo == "magia-n3") {
                             subTipo = '3';
                             tipo = 'Nivel: ';
-                        } else if (data.filtro == "magia-n4") {
+                        } else if (camp.tipoArtigo == "magia-n4") {
                             subTipo = '4';
                             tipo = 'Nivel: ';
-                        } else if (data.filtro == "magia-n5") {
+                        } else if (camp.tipoArtigo == "magia-n5") {
                             subTipo = '5';
                             tipo = 'Nivel: ';
-                        } else if (data.filtro == "magia-n6") {
+                        } else if (camp.tipoArtigo == "magia-n6") {
                             subTipo = '6';
                             tipo = 'Nivel: ';
-                        } else if (data.filtro == "magia-n7") {
+                        } else if (camp.tipoArtigo == "magia-n7") {
                             subTipo = '7';
                             tipo = 'Nivel: ';
                         }

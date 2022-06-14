@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taverna do Mestre</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/funcoes.js"></script>
+    <link rel="shortcut icon" href="assets/nav_logo.png" type="image/x-icon">
+</head>
+
+<body class="criar_pag" onload="validarSessao()">
+    <div class="nav_bar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo.PNG" />
+            </a>
+        </div>
+
+        <div class="itens_nav">
+            <ul>
+                <li class="item"><a class="t_item" href="lista.html?filtro=campanha">Campanhas</a>
+                    <ul class="sub_item">
+                        <li><a href="lista.html?filtro=campanha-ordem">Ordem Paranormal</a></li>
+                        <li><a href="lista.html?filtro=campanha-ded">D&D</a></li>
+                        <li><a href="lista.html?filtro=historia">Histórias Prontas</a></li>
+                        <li class="u_s_item"><a href="lista.html?filtro=a">Encontrar um grupo</a></li>
+                    </ul>
+                </li>
+                <li class="item">Explorar
+                    <ul class="sub_item">
+                        <li><a href="lista.html?filtro=besta">Bestiário</a></li>
+                        <li><a href="lista.html?filtro=item">Itens</a></li>
+                        <li class="u_s_item"><a href="lista.html?filtro=magia">Magias</a></li>
+                    </ul>
+                </li>
+                <div id="criar">
+                    <li class="item">
+                        <a class="t_item" href="criar.html">Criar</a>
+                    </li>
+                </div>
+                <li class="item">
+                    <a class="t_item" href="sobre.html">Sobre</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="user">
+            <li class="item"><a class="t_item" href="perfil.html" id="user_nome"></a>
+                <ul class="sub_item">
+                    
+                     <li><a id="b_user" href="listaUser.html">Minha Biblioteca</a>
+                    <li class="u_s_item"><a onclick="limparSessao()">Sair</a></li>
+                </ul>
+            </li>
+            <a href="login.html">
+                <img id="user_img" src="assets/user.png" />
+            </a>
+        </div>
+    </div>
+    <div class="corpo">
+        <div class="container">
+            <div class="criar">
+                <h1>Novo Artigo</h1>
+                <div class="parametros" id="div_parametros">
+                    <h2>Escolha o tópico do artigo:</h2>
+                    <select onchange="parametros()" id="topico">
+                        <option value="0" selected disabled>Selecione</option>
+                        <option value="1">Campanha</option>
+                        <option value="2">Personagem</option>
+                        <option value="3">Monstro</option>
+                        <option value="4">Item</option>
+                        <option value="5">Magia</option>
+                    </select>
+
+                    <div class="topicos">
+                        <div id="t_campanha">
+                            <h2>Tipo de campanha:</h2>
+                            <select onchange="parametros()" id="t_c_tipo">
+                                <option value="0" selected disabled>Selecione</option>
+                                <option value="1">Campanha Normal</option>
+                                <option value="2">História Pronta</option>
+                            </select>
+                            <h2>Escolha o sistema:</h2>
+                            <div id="div_sistema">
+                                <select id="t_c_sistema">
+                                    <option value="0" selected disabled>Selecione</option>
+                                    <option value="1">Ordem Paranormal</option>
+                                    <option value="2">D&D</option>
+                                </select>
+                            </div>
+                            <div id="div_grupo">
+                                <h2>Grupo:</h2>
+                                <select id="t_c_grupo">
+                                    <option value="0" selected disabled>Selecione</option>
+                                    <option value="1">Aberto</option>
+                                    <option value="2">Fechado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="t_personagem">
+                            <h2>Escolha o tópico do personagem:</h2>
+                            <select id="t_p_personagem">
+                                <option value="0" selected disabled>Selecione</option>
+                                <option value="1">Player</option>
+                                <option value="2">NPC</option>
+                            </select>
+                        </div>
+                        <div id="t_item">
+                            <h2>Qual a raridade do item:</h2>
+                            <select id="t_i_raridade">
+                                <option value="0" selected disabled>Selecione</option>
+                                <option value="1">Comum</option>
+                                <option value="2">Incomum</option>
+                                <option value="3">Raro</option>
+                                <option value="4">Lendário</option>
+                            </select>
+                        </div>
+                        <div id="t_magia">
+                            <h2>Escolha o nível da magia:</h2>
+                            <select id="t_m_nivel">
+                                <option value="0" selected disabled>Selecione</option>
+                                <option value="1">1°</option>
+                                <option value="2">2°</option>
+                                <option value="3">3°</option>
+                                <option value="4">4°</option>
+                                <option value="5">5°</option>
+                                <option value="6">6°</option>
+                                <option value="7">7°</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="btn_criar">
+                        <button onclick="declarandoParamentros()" id="btn_inicio">Começar a criar</button>
+                    </div>
+
+                </div>
+                <div id="div_artigo" class="div_artigo">
+                    <h2>Título do artigo:</h2>
+                    <input type="text" id="artigo_titulo" placeholder="Título do artigo" />
+                    <h2>Capa:</h2>
+                    <div class="div_a_img">
+                        <input type="file" id="artigo_capa" />
+                    </div>
+                    <h2>Descrição do artigo:</h2>
+                    <textarea class="desc" id="artigo_descricao" placeholder="Descrição do artigo"></textarea>
+                    <h2>Conteúdo do artigo:</h2>
+                    <textarea class="cont" id="artigo_conteudo" placeholder="Conteúdo do artigo"></textarea>
+                    <div class="btn_criar">
+                        <button onclick="declarandoArtigo()" id="btn_inicio">Finalizar Artigo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function parametros() {
+
+        // parâmetro inicial
+        var topico = document.getElementById("topico").value;
+
+        if (topico == 0) {
+            t_campanha.style.display = "none";
+            t_personagem.style.display = "none";
+            t_item.style.display = "none";
+            t_magia.style.display = "none";
+        } else if (topico == 1) {
+            t_campanha.style.display = "block";
+            t_personagem.style.display = "none";
+            t_item.style.display = "none";
+            t_magia.style.display = "none";
+        } else if (topico == 2) {
+            t_campanha.style.display = "none";
+            t_personagem.style.display = "block";
+            t_item.style.display = "none";
+            t_magia.style.display = "none";
+        } else if (topico == 3) {
+            t_campanha.style.display = "none";
+            t_personagem.style.display = "none";
+            t_item.style.display = "none";
+            t_magia.style.display = "none";
+        } else if (topico == 4) {
+            t_campanha.style.display = "none";
+            t_personagem.style.display = "none";
+            t_item.style.display = "block";
+            t_magia.style.display = "none";
+        } else if (topico == 5) {
+            t_campanha.style.display = "none";
+            t_personagem.style.display = "none";
+            t_item.style.display = "none";
+            t_magia.style.display = "block";
+        }
+
+        // tipo de campanha
+        var c_sistema = document.getElementById("t_c_sistema").value;
+        var c_tipo = document.getElementById("t_c_tipo").value;
+        var c_grupo = document.getElementById("t_c_grupo").value;
+
+        if (c_tipo == 1) {
+            div_sistema.style.display = "block";
+            div_grupo.style.display = "block";
+        } else if (c_tipo == 2) {
+            div_sistema.style.display = "block";
+            div_grupo.style.display = "none";
+        }
+    }
+
+    var insert = 0;
+
+    function declarandoParamentros() {
+
+        insert = 0;
+
+        // parâmetro inicial
+        var topico = document.getElementById("topico").value;
+
+        if (topico == 0) {
+            alert("Selecione um tópico!");
+            return;
+        } else if (topico == 1) {
+            if (t_c_tipo.value == 0) {
+                alert("Selecione um tipo de campanha!");
+                return;
+            } else if (t_c_tipo.value == 1) {
+                if (t_c_sistema.value == 0) {
+                    alert("Selecione o sistema!");
+                    return;
+                } else if (t_c_sistema.value == 1) {
+                    if (t_c_grupo.value == 0) {
+                        alert("Selecione o grupo!");
+                        return;
+                    } else if (t_c_grupo.value == 1) {
+                        insert = 'campanha-ordem-a';
+                    } else if (t_c_grupo.value == 2) {
+                        insert = 'campanha-ordem-f';
+                    }
+                } else if (t_c_sistema.value == 2) {
+                    if (t_c_grupo.value == 0) {
+                        alert("Selecione o grupo!");
+                        return;
+                    } else if (t_c_grupo.value == 1) {
+                        insert = 'campanha-ded-a';
+                    } else if (t_c_grupo.value == 2) {
+                        insert = 'campanha-ded-f';
+                    }
+                }
+            } else if (t_c_tipo.value == 2) {
+                if (t_c_sistema.value == 0) {
+                    alert("Selecione o sistema!");
+                    return;
+                } else if (t_c_sistema.value == 1) {
+                    insert = 'historia-ordem';
+                } else if (t_c_sistema.value == 2) {
+                    insert = 'historia-ded';
+                }
+            }
+        } else if (topico == 2) {
+            if (t_p_personagem.value == 0) {
+                alert("Selecione um personagem!");
+                return;
+            } else if (t_p_personagem.value == 1) {
+                insert = 'personagem-player';
+            } else if (t_p_personagem.value == 2) {
+                insert = 'personagem-npc';
+            }
+        } else if (topico == 3) {
+            insert = 'besta';
+        } else if (topico == 4) {
+            if (t_i_raridade.value == 0) {
+                alert("Selecione um tipo de item!");
+                return;
+            } else if (t_i_raridade.value == 1) {
+                insert = 'item-comum';
+            } else if (t_i_raridade.value == 2) {
+                insert = 'item-incomum';
+            } else if (t_i_raridade.value == 3) {
+                insert = 'item-raro';
+            } else if (t_i_raridade.value == 4) {
+                insert = 'item-lendario';
+            }
+        } else if (topico == 5) {
+            if (t_m_nivel.value == 0) {
+                alert("Selecione o nível da magia!");
+                return;
+            } else if (t_m_nivel.value == 1) {
+                insert = 'magia-n1';
+            } else if (t_m_nivel.value == 2) {
+                insert = 'magia-n2';
+            } else if (t_m_nivel.value == 3) {
+                insert = 'magia-n3';
+            } else if (t_m_nivel.value == 4) {
+                insert = 'magia-n4';
+            } else if (t_m_nivel.value == 5) {
+                insert = 'magia-n5';
+            } else if (t_m_nivel.value == 6) {
+                insert = 'magia-n6';
+            } else if (t_m_nivel.value == 7) {
+                insert = 'magia-n7';
+            }
+        }
+
+        console.log(insert);
+        div_parametros.style.display = "none";
+        div_artigo.style.display = "flex";
+    }
+
+    function declarandoArtigo() {
+
+        var usuarioSession = sessionStorage.ID_USUARIO;
+
+        console.log(usuarioSession);
+
+        var ar_titulo = document.getElementById("artigo_titulo").value;
+        var ar_capa = document.getElementById("artigo_capa").value;
+        var ar_descricao = document.getElementById("artigo_descricao").value;
+        var ar_conteudo = document.getElementById("artigo_conteudo").value;
+        var ar_insert = insert;
+
+        console.log(ar_capa);
+
+        if (ar_titulo == "" || ar_descricao == "" || ar_conteudo == "") {
+            alert("Preencha todos os campos!");
+            return;
+        }
+
+        console.log(ar_capa);
+        fetch("/medidas/cadastrarArtigo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                usuarioServer: usuarioSession,
+                tituloServer: ar_titulo,
+                descricaoServer: ar_descricao,
+                capaServer: ar_capa,
+                conteudoServer: ar_conteudo,
+                tipoServer: ar_insert
+            })
+        
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                console.log("Cadastrado com sucesso");
+                // window.location = "listaUser?idUsuario=" + usuarioSession;
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+
+    }
+
+</script>
