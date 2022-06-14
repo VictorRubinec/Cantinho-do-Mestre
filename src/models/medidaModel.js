@@ -27,7 +27,7 @@ function listar(filtro) {
     if (filtro == 'a') {
         instrucaoSql = `select 
                             *
-                            from tbArtigo where tipoArtigo like '%${filtro}';`;
+                            from tbArtigo where tipoArtigo like '%-${filtro}';`;
     } else {
 
         instrucaoSql = `select 

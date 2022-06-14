@@ -63,9 +63,9 @@ function perfilUsuario() {
                 NomePerfil.innerHTML = json[0].nomeUsuario;
                 BioPerfil.innerHTML = json[0].bio;
 
-                if (json[0].idUsuario == sessionStorage.ID_USUARIO) {
-                    b_editar.style.display = 'block';
-                }
+                // if (json[0].idUsuario == sessionStorage.ID_USUARIO) {
+                //     b_editar.style.display = 'block';
+                // }
 
                 // finalizarAguardar();
 

@@ -696,6 +696,7 @@ body {
     justify-content: left;
     align-items: left;
     margin-left: 15px;
+    width: 85%;
 }
 
 .artigo_info h2{
